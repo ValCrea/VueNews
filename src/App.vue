@@ -1,20 +1,18 @@
 <script setup lang="ts">
-import { ref, computed, watch } from "vue";
+import { ref, watch } from "vue";
 import debounce from "lodash/debounce";
 import { useNewsStatic } from "@/api/news";
 import NewsArticle from "./components/NewsArticle.vue";
 
 const searchQuery = ref("");
-const enabled = ref(false);
 const { isFetching, isError, isIdle, data, error, refetch } = useNewsStatic(
   searchQuery,
   {
-    enabled,
+    enabled: false,
   }
 );
 
 watch(searchQuery, () => {
-  enabled.value = !!searchQuery.value;
   if (searchQuery.value) debounce(refetch.value, 1000)();
   else debounce(refetch.value, 1000).cancel();
 });
@@ -22,7 +20,6 @@ watch(searchQuery, () => {
 
 <template>
   <div>
-    {{ enabled }}
     <header class="header">
       <input v-model="searchQuery" class="header__search" type="text" />
     </header>
