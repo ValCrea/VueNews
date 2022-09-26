@@ -66,7 +66,8 @@ const searchBar = ref();
 
 <style scoped lang="scss">
 .flex-container {
-  height: 100vh;
+  min-height: 100vh;
+  height: fit-content;
   display: flex;
   flex-direction: column;
 }
@@ -142,11 +143,13 @@ const searchBar = ref();
 
   &__count {
     font-size: 1.25rem;
+    text-align: center;
   }
 
   &__articles {
     margin-inline: auto;
     max-width: 800px;
+    width: fit-content;
 
     display: flex;
     flex-direction: column;
@@ -169,6 +172,7 @@ const searchBar = ref();
 
     &:hover {
       color: $yellow;
+      text-decoration: underline;
     }
   }
 }

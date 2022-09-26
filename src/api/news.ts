@@ -24,32 +24,25 @@ export function useNews(search: Ref<string>, { enabled }: any) {
 export function useNewsStatic(search: Ref<string>, { enabled }: any) {
   return useQuery(
     ["news-static", search.value],
-    () => {
+    async () => {
+      await new Promise((resolve) =>
+        setTimeout(resolve, Math.floor(Math.random() * 2500) + 500)
+      );
+      const articles = [];
+      const limit = Math.floor(Math.random() * 100) + 1;
+      for (let i = 0; i < limit; i++) {
+        articles.push({
+          source: { id: `${i}` },
+          author: `Author ${i}`,
+          title: `Title ${i}`,
+          description: `You searched for ${search.value}. We are on iteration and description ${i}`,
+          url: "",
+        });
+      }
+
       return {
         totalResults: 3,
-        articles: [
-          {
-            source: { id: "1" },
-            author: "author 1",
-            title: "title 1",
-            description: "You searched for " + search.value,
-            url: "",
-          },
-          {
-            source: { id: "2" },
-            author: "author 2",
-            title: "title 2",
-            description: "description 2",
-            url: "",
-          },
-          {
-            source: { id: "3" },
-            author: "author 3",
-            title: "title 3",
-            description: "description 3",
-            url: "",
-          },
-        ],
+        articles: articles,
       };
     },
     {
