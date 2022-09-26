@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import debounce from "lodash/debounce";
-import { useNewsStatic } from "@/api/news";
+import { useNews } from "@/api/news";
 import NewsArticle from "./components/NewsArticle.vue";
 
 const searchQuery = ref("");
-const { isFetching, isError, isIdle, data, error, refetch } = useNewsStatic(
+const { isFetching, isError, isIdle, data, error, refetch } = useNews(
   searchQuery,
   {
     enabled: false,
