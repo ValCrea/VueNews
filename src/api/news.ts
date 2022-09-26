@@ -2,25 +2,28 @@ import axios from "axios";
 import type { Ref } from "vue";
 import { useQuery } from "vue-query";
 
-export function useNews() {
+export function useNews(search: Ref<string>, { enabled }: any) {
   return useQuery(
-    "news",
+    ["news", search.value],
     () =>
       axios(
-        "https://newsapi.org/v2/everything?q=keyword&apiKey=7a0f465dda0842208a41f0981ff3bb45",
+        `https://newsapi.org/v2/everything?q=${encodeURIComponent(
+          search.value
+        )}&apiKey=7a0f465dda0842208a41f0981ff3bb45`,
         {
           method: "GET",
         }
       ),
     {
       select: (response: any) => response.data,
+      enabled,
     }
   );
 }
 
 export function useNewsStatic(search: Ref<string>, { enabled }: any) {
   return useQuery(
-    "news-static",
+    ["news-static", search.value],
     () => {
       return {
         totalResults: 3,

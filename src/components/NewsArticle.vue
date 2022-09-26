@@ -22,3 +22,5 @@ const props = defineProps<{
     </footer>
   </article>
 </template>
+
+<style scoped lang="scss"></style>

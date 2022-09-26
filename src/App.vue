@@ -42,7 +42,9 @@ watch(searchQuery, () => {
         </template>
       </div>
     </main>
-    <footer class="source"></footer>
+    <footer class="source">
+      <a class="source__url" href="https://newsapi.org">API</a>
+    </footer>
   </div>
 </template>
 
