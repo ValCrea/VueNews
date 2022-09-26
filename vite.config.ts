@@ -13,7 +13,9 @@ export default defineConfig({
   },
   css: {
     preprocessorOptions: {
-      scss: { additionalData: `@import "@/assets/_colors.scss";` },
+      scss: {
+        additionalData: `@import "@/assets/_colors.scss";\n@import "@/assets/_mixin.scss";`,
+      },
     },
   },
 });

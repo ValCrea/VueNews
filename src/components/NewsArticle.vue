@@ -9,16 +9,16 @@ const props = defineProps<{
 </script>
 
 <template>
-  <article>
-    <header>
-      <h3>{{ props.title }}</h3>
-      <p>By: {{ props.author }}</p>
+  <article class="article">
+    <header class="article__header">
+      <h3 class="article__title">{{ props.title }}</h3>
+      <p class="article__author">By: {{ props.author }}</p>
     </header>
-    <section>
-      <p>{{ props.description }}</p>
+    <section class="article__content">
+      <p class="article__description">{{ props.description }}</p>
     </section>
     <footer>
-      <a :href="props.source">Original article</a>
+      <a class="article__source" :href="props.source">Original article</a>
     </footer>
   </article>
 </template>
