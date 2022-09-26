@@ -29,4 +29,4 @@ const { isLoading, isError, data, error } = useNewsStatic();
   </div>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss"></style>
