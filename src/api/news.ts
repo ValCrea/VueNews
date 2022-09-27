@@ -10,23 +10,26 @@ export function useNews(
   domain: Ref<string>,
   { enabled }: any
 ) {
-  return useQuery(["news", search.value], () => {
-    const s = encodeURIComponent(search.value);
-    const f = encodeURIComponent(from.value);
-    const t = encodeURIComponent(to.value);
-    const l = encodeURIComponent(langauge.value);
-    const d = encodeURIComponent(domain.value);
-
-    const url = `https://newsapi.org/v2/everything?q=${s}&from=${f}&to=${t}&language=${l}&domains=${d}&apiKey=7a0f465dda0842208a41f0981ff3bb45`;
-
-    axios(url, {
-      method: "GET",
-    }),
-      {
-        select: (response: any) => response.data,
-        enabled,
-      };
-  });
+  return useQuery(
+    ["news", search.value],
+    () =>
+      axios(
+        `https://newsapi.org/v2/everything?q=${encodeURIComponent(
+          search.value
+        )}&language=${encodeURIComponent(
+          langauge.value
+        )}&domains=${encodeURIComponent(
+          domain.value
+        )}&apiKey=7a0f465dda0842208a41f0981ff3bb45`,
+        {
+          method: "GET",
+        }
+      ),
+    {
+      select: (response: any) => response.data,
+      enabled,
+    }
+  );
 }
 
 export function useNewsStatic(
